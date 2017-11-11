@@ -2,7 +2,7 @@ const db = require('../db/index.js');
 
 var addSongToDb = function(req, res, data) {
   //modify to pull data from api in future
-  console.log('add to db function connect');
+  console.log('add to db function called');
   var track = new db.Song({
     id: 1,
     title: 'Under The Bridge',
@@ -26,4 +26,5 @@ var getRandomSongFromDb = function(callback) {
 
 
 
-module.exports.test = test;
+module.exports.addSongToDb = addSongToDb;
+module.exports.getRandomSongFromDb = getRandomSongFromDb;
