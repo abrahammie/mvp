@@ -2,6 +2,7 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const helpers = require('./helpers.js');
+const dummyData = require('../db/data.js');
 const db = require('../db/index.js');
 
 let app = express();
@@ -14,9 +15,8 @@ app.get('/', function(req, res) {
       console.log(err);
       console.log('homepage did not load');
     } else {
-      console.log('loading...');
-      res.sendStatus(200);
-      res.end();
+      console.log('loading song data...');
+      helpers.addSongsToDb(req, res, dummyData.data);
     }
   });
 });
@@ -25,9 +25,9 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
   console.log('A POST REQUEST');
   res.end();
-  //helpers.getRandomSongFromDb(function(data) {
-  //  res.end(JSON.stringify(data));
-  // })
+  helpers.getRandomSongFromDb(function(data) {
+   res.end(JSON.stringify(data));
+  })
 
 });
 

@@ -31,7 +31,7 @@ var App = function (_React$Component) {
         type: 'POST',
         dataType: 'json',
         success: function success(data) {
-          console.log('song data was received from server');
+          console.log('song data was received from server', data);
           this.setState({ song: data });
         }
       });
@@ -52,12 +52,12 @@ var App = function (_React$Component) {
         React.createElement(
           'button',
           { onClick: this.getSong },
-          'Click Me For song'
+          'Click Me For Song'
         )
       );
     }
 
-    //How to render Search component without bundler???
+    //How to render Song component without bundler???
 
     //if i want to render recently meowed songs
 

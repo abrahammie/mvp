@@ -13,7 +13,7 @@ class App extends React.Component {
       type: 'POST',
       dataType: 'json',
       success: function(data) {
-        console.log('song data was received from server');
+        console.log('song data was received from server', data);
         this.setState({song: data});
       },
     });
@@ -24,14 +24,14 @@ class App extends React.Component {
     <div>
       <h1>Go Away {this.props.name}!</h1>
         <button onClick={this.getSong}>
-          Click Me For song
+          Click Me For Song
         </button>
 
     </div>
     );
   }
 
-  //How to render Search component without bundler???
+  //How to render Song component without bundler???
 
   //if i want to render recently meowed songs
   componentDidMount() {
