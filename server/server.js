@@ -3,8 +3,7 @@ const express = require('express');
 const path = require('path');
 let app = express();
 
-//what is the point of this if I have to specify path again below?
-app.use(express.static('./public'));
+app.use(express.static('./client/public'));
 
 app.get('/', function(req, res) {
   res.sendFile('./index.html', function (err) {
