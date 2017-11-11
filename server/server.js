@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const path = require('path');
+const helpers = require('./helpers.js');
 let app = express();
 
 app.use(express.static('./public'));
@@ -16,12 +17,15 @@ app.get('/', function(req, res) {
       res.end();
     }
   });
+});
 
 
+app.post('/', function(req, res) {
+  helpers.test();
 });
 
 let port = 3000;
 
-app.listen(port, function(){
+app.listen(port, function() {
   console.log('Listening on port 3000.');
 });
