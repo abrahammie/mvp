@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 let app = express();
 
-app.use(express.static('./client/public'));
+app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
   res.sendFile('./index.html', function (err) {

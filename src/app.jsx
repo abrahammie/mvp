@@ -1,8 +1,8 @@
 class App extends React.Component {
-  render () {
+  render (props) {
     return <h1>Go Away {this.props.name}!</h1>
   }
 }
 
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))

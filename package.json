@@ -4,7 +4,7 @@
   "description": "An app for meow-singers everywhere who are looking for inspiration.",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d public --watch"
+    "start": "babel --watch src --out-dir public --presets=es2015,react --ignore=node_modules,public --source-mapsinline"
   },
   "repository": {
     "type": "git",
