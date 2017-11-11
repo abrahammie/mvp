@@ -2,6 +2,8 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const helpers = require('./helpers.js');
+const db = require('../db/index.js');
+
 let app = express();
 
 app.use(express.static('./public'));
@@ -22,6 +24,15 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   helpers.test();
+  var track = new db.Song({
+    id: 1,
+    title: 'Under The Bridge',
+    artist: 'Red Hot Chili Peppers',
+    genre: 'Alternative',
+    youTubeUrl: 'https://www.youtube.com/watch?v=GLvohMXgcBo'
+  });
+  track.save();
+  res.end();
 });
 
 let port = 3000;
