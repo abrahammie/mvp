@@ -1,0 +1,27 @@
+{
+  "name": "mvp",
+  "version": "1.0.0",
+  "description": "An app for meow-singers everywhere who are looking for inspiration.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abrahammie/mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abrahammie/mvp/issues"
+  },
+  "homepage": "https://github.com/abrahammie/mvp#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}
