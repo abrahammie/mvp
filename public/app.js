@@ -21,12 +21,26 @@ var App = function (_React$Component) {
     key: "render",
     value: function render(props) {
       return React.createElement(
-        "h1",
+        "div",
         null,
-        "Go Away ",
-        this.props.name,
-        "!"
+        React.createElement(
+          "h1",
+          null,
+          "Go Away ",
+          this.props.name,
+          "!"
+        )
       );
+    }
+
+    //How to render Search component without bundler???
+
+    //if i want to render recently meowed songs
+
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      //get request for last 5 recently meowed songs
     }
   }]);
 

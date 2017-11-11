@@ -1,3 +1,6 @@
 body {
   background-color: #cebb86;
 }
+#cat {
+  max-height: 300px;
+}
