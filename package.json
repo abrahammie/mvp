@@ -18,10 +18,12 @@
   "homepage": "https://github.com/abrahammie/mvp#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "jquery": "^3.2.1",
     "mongodb": "^2.2.33",
     "mongoose": "^4.13.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }

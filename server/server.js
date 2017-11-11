@@ -3,14 +3,22 @@ const express = require('express');
 const path = require('path');
 let app = express();
 
-//serve the static assets from this folder
-app.use('/static', express.static(path.join(__dirname, 'public')));
+//what is the point of this if I have to specify path again below?
+app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
-  res.sendFile('index');
-  console.log('loading...');
-  res.end();
-  //res.render('index.js'); //hold on...
+  res.sendFile('./index.html', function (err) {
+    if (err) {
+      console.log(err);
+      console.log('homepage did not load');
+    } else {
+      console.log('loading...');
+      res.sendStatus(200);
+      res.end();
+    }
+  });
+
+
 });
 
 let port = 3000;
