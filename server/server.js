@@ -23,16 +23,10 @@ app.get('/', function(req, res) {
 
 
 app.post('/', function(req, res) {
-  helpers.test();
-  var track = new db.Song({
-    id: 1,
-    title: 'Under The Bridge',
-    artist: 'Red Hot Chili Peppers',
-    genre: 'Alternative',
-    youTubeUrl: 'https://www.youtube.com/watch?v=GLvohMXgcBo'
-  });
-  track.save();
-  res.end();
+  //helpers.getRandomSongFromDb(function(data) {
+  //  res.end(JSON.stringify(data));
+  // })
+
 });
 
 let port = 3000;
