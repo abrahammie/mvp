@@ -1,18 +1,20 @@
 "use strict";
 
-function Search(props) {
+function Song(props) {
   return React.createElement(
     "div",
     null,
     React.createElement(
-      "button",
+      "p",
       null,
-      "click me to get a song"
+      "Title: ",
+      this.props.title
     ),
     React.createElement(
-      "img",
+      "p",
       null,
-      "An Image Goes Here"
+      "Artist: ",
+      this.props.artist
     )
   );
 }

@@ -1,8 +1,32 @@
 class App extends React.Component {
-  render (props) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      song: {}
+    }
+  }
+
+  getSong() {
+    console.log('getSong called');
+    $.ajax({
+      url: '/',
+      type: 'POST',
+      dataType: 'json',
+      success: function(data) {
+        console.log('song data was received from server');
+        this.setState({song: data});
+      },
+    });
+  }
+
+  render(props) {
     return (
     <div>
       <h1>Go Away {this.props.name}!</h1>
+        <button onClick={this.getSong}>
+          Click Me For song
+        </button>
+
     </div>
     );
   }

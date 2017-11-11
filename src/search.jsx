@@ -1,8 +1,8 @@
-function Search(props) {
+function Song(props) {
   return (
     <div>
-    <button>click me to get a song</button>
-      <img>An Image Goes Here</img>
+      <p>Title: {this.props.title}</p>
+      <p>Artist: {this.props.artist}</p>
     </div>
     );
 }

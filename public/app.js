@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -11,24 +11,48 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      song: {}
+    };
+    return _this;
   }
 
   _createClass(App, [{
-    key: "render",
+    key: 'getSong',
+    value: function getSong() {
+      console.log('getSong called');
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        dataType: 'json',
+        success: function success(data) {
+          console.log('song data was received from server');
+          this.setState({ song: data });
+        }
+      });
+    }
+  }, {
+    key: 'render',
     value: function render(props) {
       return React.createElement(
-        "div",
+        'div',
         null,
         React.createElement(
-          "h1",
+          'h1',
           null,
-          "Go Away ",
+          'Go Away ',
           this.props.name,
-          "!"
+          '!'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.getSong },
+          'Click Me For song'
         )
       );
     }
@@ -38,7 +62,7 @@ var App = function (_React$Component) {
     //if i want to render recently meowed songs
 
   }, {
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       //get request for last 5 recently meowed songs
     }
@@ -47,4 +71,4 @@ var App = function (_React$Component) {
   return App;
 }(React.Component);
 
-ReactDOM.render(React.createElement(App, { name: "Krista" }), document.getElementById('app'));
+ReactDOM.render(React.createElement(App, { name: 'Krista' }), document.getElementById('app'));

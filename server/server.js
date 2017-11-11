@@ -23,6 +23,8 @@ app.get('/', function(req, res) {
 
 
 app.post('/', function(req, res) {
+  console.log('A POST REQUEST');
+  res.end();
   //helpers.getRandomSongFromDb(function(data) {
   //  res.end(JSON.stringify(data));
   // })
