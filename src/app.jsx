@@ -4,7 +4,10 @@ class App extends React.Component {
     this.state = {
       song: ''
     }
+    //this.setState = this.setState.bind(this);
+    this.getSong = this.getSong.bind(this);
   }
+
 
   getSong() {
     console.log('getSong called');
@@ -12,9 +15,9 @@ class App extends React.Component {
       url: '/',
       type: 'POST',
       dataType: 'json',
-      success: function(data) {
+      success: (data) => {
         console.log('song data was received from server', data);
-        this.setState({song: data});
+        this.setState({song: data[0]});
         this.forceUpdate();
       }
     });
@@ -26,7 +29,7 @@ class App extends React.Component {
       url: '/',
       type: 'POST',
       dataType: 'json',
-      success: function(data) {
+      success: (data) => {
         console.log('song data was received sent');
       }
     });
@@ -35,25 +38,22 @@ class App extends React.Component {
   render() {
     return (
     <div>
+
       <form action="localhost:3000/recommend" method="post">
-
         <div>
-          <label>Song Title</label><input name="title" value=""/>
-        <div/>
-        <div>
-          <label>Artist Name</label><input name="artist" value=""/>
+          <label>Song Title</label><input name="title" type="text"/>
         </div>
         <div>
-          <label>Genre</label><input name="title" value=""/>
-        <div/>
+          <label>Artist Name</label><input name="artist" type="text"/>
+        </div>
         <div>
-          <label>YouTube Link (optional)</label><input name="artist" value=""/>
+          <label>Genre</label><input name="title" type="text"/>
         </div>
-
         <div>
-          <button>Save A Recommendation For Future</button>
+          <label>YouTube Link (optional)</label><input name="artist" type="text"/>
         </div>
-        </div>
+        <div>
+          <button type="submit">Save A Recommendation For Future</button>
         </div>
       </form>
 

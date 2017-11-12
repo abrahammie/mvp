@@ -7,17 +7,16 @@ const db = require('../db/index.js');
 
 let app = express();
 
+//initial render of index.html
 app.use(express.static('./public'));
 
-app.get('/', function(req, res, next) {
-  console.log('loading song data...');
-  helpers.addSongsToDb(req, res, dummyData.data);
-
-    // if (err) {
-    //   console.log(err);
-    //   console.log('homepage did not load');
-    //   next(err);
-    // } else {
+//should be called on conponentDidMount
+app.post('/recommend', function(req, res, next) {
+  console.log('received data, adding to db...');
+  helpers.addSongToDb(req, function() {
+    console.log('Song added');
+    res.end();
+  });
 
 });
 
@@ -25,9 +24,10 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res) {
   console.log('A POST REQUEST');
   helpers.getRandomSongFromDb(function(data) {
-   res.end(JSON.stringify(data));
+    if (data) {
+      res.end(JSON.stringify(data));
+    }
   })
-
 });
 
 let port = 3000;

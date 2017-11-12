@@ -18,13 +18,16 @@ var App = function (_React$Component) {
 
     _this.state = {
       song: ''
-    };
+      //this.setState = this.setState.bind(this);
+    };_this.getSong = _this.getSong.bind(_this);
     return _this;
   }
 
   _createClass(App, [{
     key: 'getSong',
     value: function getSong() {
+      var _this2 = this;
+
       console.log('getSong called');
       $.ajax({
         url: '/',
@@ -32,8 +35,8 @@ var App = function (_React$Component) {
         dataType: 'json',
         success: function success(data) {
           console.log('song data was received from server', data);
-          this.setState({ song: data });
-          this.forceUpdate();
+          _this2.setState({ song: data[0] });
+          _this2.forceUpdate();
         }
       });
     }
@@ -58,7 +61,7 @@ var App = function (_React$Component) {
         null,
         React.createElement(
           'form',
-          { action: '/recommend', method: 'post' },
+          { action: 'localhost:3000/recommend', method: 'post' },
           React.createElement(
             'div',
             null,
@@ -67,28 +70,52 @@ var App = function (_React$Component) {
               null,
               'Song Title'
             ),
-            React.createElement('input', { name: 'title', value: '' }),
-            React.createElement('div', null),
+            React.createElement('input', { name: 'title', type: 'text' })
+          ),
+          React.createElement(
+            'div',
+            null,
             React.createElement(
-              'div',
+              'label',
               null,
-              React.createElement(
-                'label',
-                null,
-                'Artist Name'
-              ),
-              React.createElement('input', { name: 'artist', value: '' })
+              'Artist Name'
             ),
+            React.createElement('input', { name: 'artist', type: 'text' })
+          ),
+          React.createElement(
+            'div',
+            null,
             React.createElement(
-              'div',
+              'label',
               null,
-              React.createElement(
-                'button',
-                null,
-                'Save My Recommendation For Future'
-              )
+              'Genre'
+            ),
+            React.createElement('input', { name: 'title', type: 'text' })
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              null,
+              'YouTube Link (optional)'
+            ),
+            React.createElement('input', { name: 'artist', type: 'text' })
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'button',
+              { type: 'submit' },
+              'Save A Recommendation For Future'
             )
           )
+        ),
+        React.createElement(
+          'h3',
+          null,
+          'Or'
         ),
         React.createElement(
           'button',
@@ -110,22 +137,20 @@ var App = function (_React$Component) {
       );
     }
 
-    //How to render Song component without bundler???
-
-    //if i want to render recently meowed songs dynamically
+    //should update db
 
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //get request for last 5 recently meowed songs
-      $.ajax({
-        url: '/',
-        type: 'GET',
-        dataType: 'json',
-        success: function success(data) {
-          console.log('component mounted');
-        }
-      });
+      // $.ajax({
+      //   url: '/',
+      //   type: 'GET',
+      //   dataType: 'json',
+      //   success: function(data) {
+      //   console.log('component mounted');
+      //   }
+      // });
     }
   }]);
 
