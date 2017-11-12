@@ -1,20 +1,23 @@
 "use strict";
 
-function Song(props) {
+var SongRec = function SongRec(props) {
   return React.createElement(
     "div",
     null,
     React.createElement(
-      "p",
+      "h1",
       null,
       "Title: ",
-      this.props.title
+      undefined.props.title
     ),
     React.createElement(
       "p",
       null,
       "Artist: ",
-      this.props.artist
+      undefined.props.artist
     )
   );
-}
+};
+
+//how else o access within app.jsx
+window.SongRec = SongRec;

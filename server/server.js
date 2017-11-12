@@ -9,22 +9,21 @@ let app = express();
 
 app.use(express.static('./public'));
 
-app.get('/', function(req, res) {
-  res.sendFile('./index.html', function (err) {
-    if (err) {
-      console.log(err);
-      console.log('homepage did not load');
-    } else {
-      console.log('loading song data...');
-      helpers.addSongsToDb(req, res, dummyData.data);
-    }
-  });
+app.get('/', function(req, res, next) {
+  console.log('loading song data...');
+  helpers.addSongsToDb(req, res, dummyData.data);
+
+    // if (err) {
+    //   console.log(err);
+    //   console.log('homepage did not load');
+    //   next(err);
+    // } else {
+
 });
 
 
 app.post('/', function(req, res) {
   console.log('A POST REQUEST');
-  res.end();
   helpers.getRandomSongFromDb(function(data) {
    res.end(JSON.stringify(data));
   })

@@ -17,7 +17,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      song: {}
+      song: ''
     };
     return _this;
   }
@@ -33,38 +33,99 @@ var App = function (_React$Component) {
         success: function success(data) {
           console.log('song data was received from server', data);
           this.setState({ song: data });
+          this.forceUpdate();
+        }
+      });
+    }
+  }, {
+    key: 'saveSong',
+    value: function saveSong() {
+      console.log('saveSong called');
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        dataType: 'json',
+        success: function success(data) {
+          console.log('song data was received sent');
         }
       });
     }
   }, {
     key: 'render',
-    value: function render(props) {
+    value: function render() {
       return React.createElement(
         'div',
         null,
         React.createElement(
-          'h1',
-          null,
-          'Go Away ',
-          this.props.name,
-          '!'
+          'form',
+          { action: '/recommend', method: 'post' },
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              null,
+              'Song Title'
+            ),
+            React.createElement('input', { name: 'title', value: '' }),
+            React.createElement('div', null),
+            React.createElement(
+              'div',
+              null,
+              React.createElement(
+                'label',
+                null,
+                'Artist Name'
+              ),
+              React.createElement('input', { name: 'artist', value: '' })
+            ),
+            React.createElement(
+              'div',
+              null,
+              React.createElement(
+                'button',
+                null,
+                'Save My Recommendation For Future'
+              )
+            )
+          )
         ),
         React.createElement(
           'button',
           { onClick: this.getSong },
-          'Click Me For Song'
+          'Click To Get Song Recommendation'
+        ),
+        React.createElement(
+          'div',
+          null,
+          this.state.song ? 'Title: ' + this.state.song.title : '',
+          '  '
+        ),
+        React.createElement(
+          'div',
+          null,
+          this.state.song ? 'Artist: ' + this.state.song.artist : '',
+          '  '
         )
       );
     }
 
     //How to render Song component without bundler???
 
-    //if i want to render recently meowed songs
+    //if i want to render recently meowed songs dynamically
 
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //get request for last 5 recently meowed songs
+      $.ajax({
+        url: '/',
+        type: 'GET',
+        dataType: 'json',
+        success: function success(data) {
+          console.log('component mounted');
+        }
+      });
     }
   }]);
 
