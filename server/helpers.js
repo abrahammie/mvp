@@ -11,17 +11,18 @@ var addSongToDb = function(data, callback) {
         title: `${data.title}`,
         artist: `${data.artist}`,
         genre: `${data.genre}`,
-        youTubeUrl:`${data.youTubeUrl}`
+        youTubeUrl:`${data.youTube}`
       });
       track.save(function(err) {
         if (err) {
           console.log('track not saved, possible duplicate');
+        } else {
+          callback(track);
         }
       });
     });
   } else {
-    console.log('Required fields missing.');
-    callback();
+    callback(null);
   }
 };
 

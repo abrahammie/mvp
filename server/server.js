@@ -16,10 +16,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/recommend', function(req, res, next) {
   console.log('received data, adding to db...');
-  console.log(req.body);
-  helpers.addSongToDb(req, function(data) {
+  helpers.addSongToDb(req.body, function(data) {
     if (data) {
-      res.end();
+      res.status(200).send('Song saved!');
+    } else {
+      res.status(418).send('Required fields missing!');
     }
   });
 
