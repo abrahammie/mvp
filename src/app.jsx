@@ -10,15 +10,14 @@ class App extends React.Component {
 
 
   getSong() {
-    console.log('getSong called');
     $.ajax({
-      url: '/',
-      type: 'POST',
-      dataType: 'json',
+      url: '/random',
+      type: 'GET',
+      //dataType: 'json',
       success: (data) => {
-        console.log('song data was received from server', data);
-        this.setState({song: data[0]});
-        this.forceUpdate();
+        console.log('song data was received from server');
+        console.log(typeof data);
+        this.setState({song: JSON.parse(data)[0]});
       }
     });
   }
@@ -39,7 +38,7 @@ class App extends React.Component {
     return (
     <div>
 
-      <form action="localhost:3000/recommend" method="post">
+      <form action="/recommend" method="post">
         <div>
           <label>Song Title</label><input name="title" type="text"/>
         </div>

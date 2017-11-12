@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,15 +30,14 @@ var App = function (_React$Component) {
     value: function getSong() {
       var _this2 = this;
 
-      console.log('getSong called');
       $.ajax({
-        url: '/',
-        type: 'POST',
-        dataType: 'json',
+        url: '/random',
+        type: 'GET',
+        //dataType: 'json',
         success: function success(data) {
-          console.log('song data was received from server', data);
-          _this2.setState({ song: data[0] });
-          _this2.forceUpdate();
+          console.log('song data was received from server');
+          console.log(typeof data === 'undefined' ? 'undefined' : _typeof(data));
+          _this2.setState({ song: JSON.parse(data)[0] });
         }
       });
     }
@@ -61,7 +62,7 @@ var App = function (_React$Component) {
         null,
         React.createElement(
           'form',
-          { action: 'localhost:3000/recommend', method: 'post' },
+          { action: '/recommend', method: 'post' },
           React.createElement(
             'div',
             null,

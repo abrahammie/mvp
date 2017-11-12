@@ -10,19 +10,20 @@ let app = express();
 //initial render of index.html
 app.use(express.static('./public'));
 
-//should be called on conponentDidMount
 app.post('/recommend', function(req, res, next) {
   console.log('received data, adding to db...');
-  helpers.addSongToDb(req, function() {
-    console.log('Song added');
-    res.end();
+  console.log(req);
+  helpers.addSongToDb(req, function(data) {
+    if (data) {
+      res.end();
+    }
   });
 
 });
 
 
-app.post('/', function(req, res) {
-  console.log('A POST REQUEST');
+app.get('/random', function(req, res) {
+  console.log('get request');
   helpers.getRandomSongFromDb(function(data) {
     if (data) {
       res.end(JSON.stringify(data));

@@ -32,8 +32,7 @@ var getRandomSongFromDb = function(callback) {
   db.Song.count({}, function(err, count) {
     if (count) {
       let randInd = Math.floor(Math.random() * count);
-      console.log(count, ' songs in db');
-      console.log('choosing song # ', randInd);
+      console.log('choosing song #  ', randInd, 'of', count);
       db.Song.find({id: `${randInd}`}, function(err, data) {
         if (err) {
           console.log('problem retrieving random song');
@@ -43,7 +42,6 @@ var getRandomSongFromDb = function(callback) {
       });
     }
   });
-
 }
 
 
