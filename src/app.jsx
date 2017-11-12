@@ -13,10 +13,8 @@ class App extends React.Component {
     $.ajax({
       url: '/random',
       type: 'GET',
-      //dataType: 'json',
       success: (data) => {
         console.log('song data was received from server');
-        console.log(typeof data);
         this.setState({song: JSON.parse(data)[0]});
       }
     });
@@ -27,7 +25,8 @@ class App extends React.Component {
     $.ajax({
       url: '/',
       type: 'POST',
-      dataType: 'json',
+      body: 'form',
+      //dataType: 'json',
       success: (data) => {
         console.log('song data was received sent');
       }
@@ -40,16 +39,16 @@ class App extends React.Component {
 
       <form action="/recommend" method="post">
         <div>
-          <label>Song Title</label><input name="title" type="text"/>
+          <label>Song Title</label><input name="title" type="title" id="title"/>
         </div>
         <div>
-          <label>Artist Name</label><input name="artist" type="text"/>
+          <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
         </div>
         <div>
-          <label>Genre</label><input name="title" type="text"/>
+          <label>Genre</label><input name="genre" type="genre" id="genre"/>
         </div>
         <div>
-          <label>YouTube Link (optional)</label><input name="artist" type="text"/>
+          <label>YouTube Link (optional)</label><input name="youTube" type="youTube" id="youTube"/>
         </div>
         <div>
           <button type="submit">Save A Recommendation For Future</button>
@@ -67,21 +66,6 @@ class App extends React.Component {
     </div>
     );
   }
-
-  //should update db
-  componentDidMount() {
-    //get request for last 5 recently meowed songs
-    // $.ajax({
-    //   url: '/',
-    //   type: 'GET',
-    //   dataType: 'json',
-    //   success: function(data) {
-    //   console.log('component mounted');
-    //   }
-    // });
-  }
-
-}
 
 
 

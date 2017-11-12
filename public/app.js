@@ -1,7 +1,5 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33,10 +31,8 @@ var App = function (_React$Component) {
       $.ajax({
         url: '/random',
         type: 'GET',
-        //dataType: 'json',
         success: function success(data) {
           console.log('song data was received from server');
-          console.log(typeof data === 'undefined' ? 'undefined' : _typeof(data));
           _this2.setState({ song: JSON.parse(data)[0] });
         }
       });
@@ -48,7 +44,8 @@ var App = function (_React$Component) {
       $.ajax({
         url: '/',
         type: 'POST',
-        dataType: 'json',
+        body: 'form',
+        //dataType: 'json',
         success: function success(data) {
           console.log('song data was received sent');
         }
@@ -71,7 +68,7 @@ var App = function (_React$Component) {
               null,
               'Song Title'
             ),
-            React.createElement('input', { name: 'title', type: 'text' })
+            React.createElement('input', { name: 'title', type: 'title', id: 'title' })
           ),
           React.createElement(
             'div',
@@ -81,7 +78,7 @@ var App = function (_React$Component) {
               null,
               'Artist Name'
             ),
-            React.createElement('input', { name: 'artist', type: 'text' })
+            React.createElement('input', { name: 'artist', type: 'artist', id: 'artist' })
           ),
           React.createElement(
             'div',
@@ -91,7 +88,7 @@ var App = function (_React$Component) {
               null,
               'Genre'
             ),
-            React.createElement('input', { name: 'title', type: 'text' })
+            React.createElement('input', { name: 'genre', type: 'genre', id: 'genre' })
           ),
           React.createElement(
             'div',
@@ -101,7 +98,7 @@ var App = function (_React$Component) {
               null,
               'YouTube Link (optional)'
             ),
-            React.createElement('input', { name: 'artist', type: 'text' })
+            React.createElement('input', { name: 'youTube', type: 'youTube', id: 'youTube' })
           ),
           React.createElement(
             'div',
