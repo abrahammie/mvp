@@ -38,22 +38,22 @@ var App = function (_React$Component) {
       });
     }
   }, {
-    key: 'addSong',
-    value: function addSong(data) {
-      console.log('addSong called');
+    key: 'saveSong',
+    value: function saveSong() {
+      console.log('saveSong called');
       $.ajax({
         url: '/',
         type: 'POST',
-        body: '' + data,
-        success: function success(response) {
-          console.log('song data was sent');
+        body: 'form',
+        success: function success(data) {
+          console.log('song data was received sent');
         }
       });
     }
   }, {
     key: 'clearFields',
     value: function clearFields() {
-      document.getElementById("form").value = "";
+      document.getElementById("songDetails").value = "";
     }
   }, {
     key: 'render',
@@ -61,7 +61,49 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(SubmitForm, { addSong: this.addSong, clearFields: this.clearFields }),
+        React.createElement(
+          'form',
+          { action: '/', method: 'post', id: 'songDetails' },
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              null,
+              'Song Title'
+            ),
+            React.createElement('input', { name: 'title', type: 'title', id: 'title' })
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              null,
+              'Artist Name'
+            ),
+            React.createElement('input', { name: 'artist', type: 'artist', id: 'artist' })
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              null,
+              'Genre'
+            ),
+            React.createElement('input', { name: 'genre', type: 'genre', id: 'genre' })
+          ),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'button',
+              { type: 'submit', onClick: this.clearFields },
+              'Save A Recommendation For Future'
+            )
+          )
+        ),
         React.createElement(
           'h3',
           null,
@@ -90,69 +132,5 @@ var App = function (_React$Component) {
 
   return App;
 }(React.Component);
-
-var SubmitForm = function SubmitForm(_ref) {
-  var addSong = _ref.addSong,
-      clearFields = _ref.clearFields;
-
-
-  var val = {};
-
-  return React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'form',
-      { id: 'form' },
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'label',
-          null,
-          'Song Title'
-        ),
-        React.createElement('input', { type: 'text', value: undefined.state.title, onChange: undefined.handleChange.bind(undefined) })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'label',
-          null,
-          'Artist Name'
-        ),
-        React.createElement('input', { id: 'input', ref: function ref(node) {
-            return '' + (val.artist = node);
-          } })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'label',
-          null,
-          'Genre'
-        ),
-        React.createElement('input', { id: 'input', ref: function ref(node) {
-            return '' + (val.genre = node);
-          } })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'button',
-          { onClick: function onClick() {
-              console.log(val);
-              // addSong(val);
-              // clearFields();
-            } },
-          'Save A Recommendation For Future'
-        )
-      )
-    )
-  );
-};
 
 ReactDOM.render(React.createElement(App, { name: 'Krista' }), document.getElementById('app'));

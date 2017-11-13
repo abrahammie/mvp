@@ -18,26 +18,39 @@ class App extends React.Component {
     });
   }
 
-  addSong(data) {
-    console.log('addSong called');
+  saveSong() {
+    console.log('saveSong called');
     $.ajax({
       url: '/',
       type: 'POST',
-      body: `${data}`,
-      success: (response) => {
-        console.log('song data was sent');
+      body: 'form',
+      success: (data) => {
+        console.log('song data was received sent');
       }
     });
   }
 
   clearFields() {
-    document.getElementById("form").value = "";
+    document.getElementById("songDetails").value = "";
   }
 
   render() {
     return (
     <div>
-      <SubmitForm addSong={this.addSong} clearFields={this.clearFields}/>
+      <form action="/" method="post" id="songDetails">
+        <div>
+          <label>Song Title</label><input name="title" type="title" id="title"/>
+        </div>
+        <div>
+          <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
+        </div>
+        <div>
+          <label>Genre</label><input name="genre" type="genre" id="genre"/>
+        </div>
+        <div>
+          <button type="submit" onClick={this.clearFields}>Save A Recommendation For Future</button>
+        </div>
+      </form>
 
       <h3>Or</h3>
 
@@ -51,54 +64,5 @@ class App extends React.Component {
     );
   }
 }
-
-
-
-
-
-const SubmitForm = ({addSong, clearFields}) => {
-
-  handleChange(event) {
-    this.setState({title: event.target.value})
-  }
-
-  return (
-    <div>
-    <form id="form">
-        <div>
-          <label>Song Title</label><input type="text" value={this.state.title} onChange={this.handleChange.bind(this)} />
-        </div>
-        <div>
-          <label>Artist Name</label><input id="input" ref={node => `${val.artist = node}`} />
-        </div>
-        <div>
-          <label>Genre</label><input id="input" ref={node => `${val.genre = node}`} />
-        </div>
-        <div>
-          <button onClick={() => {console.log(val);
-            // addSong(val);
-            // clearFields();
-            }}>Save A Recommendation For Future</button>
-        </div>
-        </form>
-    </div>
-    );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))
