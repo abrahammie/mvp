@@ -41,7 +41,9 @@ var App = function (_React$Component) {
   }, {
     key: 'clearForm',
     value: function clearForm() {
-      setTimeout(document.getElementById("songDetails").reset(), 3000);
+      //display song saved and then force a rerender
+      document.getElementById("songDetails").append('Song saved!');
+      // document.getElementById("songDetails").reset();
     }
   }, {
     key: 'render',
@@ -78,7 +80,7 @@ var App = function (_React$Component) {
             null,
             React.createElement(
               'button',
-              null,
+              { type: 'submit', onClick: this.clearForm },
               'Save A Recommendation For Future'
             )
           )

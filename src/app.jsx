@@ -20,7 +20,9 @@ class App extends React.Component {
   }
 
   clearForm() {
-    document.getElementById("songDetails").reset();
+    //display song saved and then force a rerender
+    document.getElementById("songDetails").append('Song saved!');
+    // document.getElementById("songDetails").reset();
   }
 
 
@@ -36,7 +38,7 @@ class App extends React.Component {
           <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
         </div>
         <div>
-          <button type="submit" onClick={this.clearForm}/>Save A Recommendation For Future</button>
+          <button type="submit" onClick={this.clearForm}>Save A Recommendation For Future</button>
         </div>
       </form>
 
