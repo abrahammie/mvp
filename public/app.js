@@ -112,9 +112,7 @@ var SubmitForm = function SubmitForm(_ref) {
           null,
           'Song Title'
         ),
-        React.createElement('input', { id: 'input', ref: function ref(node) {
-            return '' + (val.title = node);
-          } })
+        React.createElement('input', { type: 'text', value: undefined.state.title, onChange: undefined.handleChange.bind(undefined) })
       ),
       React.createElement(
         'div',
@@ -147,8 +145,8 @@ var SubmitForm = function SubmitForm(_ref) {
           'button',
           { onClick: function onClick() {
               console.log(val);
-              addSong(val);
-              clearFields();
+              // addSong(val);
+              // clearFields();
             } },
           'Save A Recommendation For Future'
         )

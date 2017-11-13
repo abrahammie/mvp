@@ -58,13 +58,15 @@ class App extends React.Component {
 
 const SubmitForm = ({addSong, clearFields}) => {
 
-  let val = {};
+  handleChange(event) {
+    this.setState({title: event.target.value})
+  }
 
   return (
     <div>
     <form id="form">
         <div>
-          <label>Song Title</label><input id="input" ref={node => `${val.title = node}`} />
+          <label>Song Title</label><input type="text" value={this.state.title} onChange={this.handleChange.bind(this)} />
         </div>
         <div>
           <label>Artist Name</label><input id="input" ref={node => `${val.artist = node}`} />
@@ -74,8 +76,8 @@ const SubmitForm = ({addSong, clearFields}) => {
         </div>
         <div>
           <button onClick={() => {console.log(val);
-            addSong(val);
-            clearFields();
+            // addSong(val);
+            // clearFields();
             }}>Save A Recommendation For Future</button>
         </div>
         </form>
