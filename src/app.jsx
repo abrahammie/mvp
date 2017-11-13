@@ -18,35 +18,26 @@ class App extends React.Component {
     });
   }
 
-  saveSong() {
-    console.log('saveSong called');
+  addSong(data) {
+    console.log('addSong called');
     $.ajax({
       url: '/',
       type: 'POST',
-      body: 'form',
-      success: (data) => {
-        console.log('song data was received sent');
+      body: `${data}`,
+      success: (response) => {
+        console.log('song data was sent');
       }
     });
+  }
+
+  clearFields() {
+    document.getElementById("form").value = "";
   }
 
   render() {
     return (
     <div>
-      <form action="/recommend" method="post" id="songDetails">
-        <div>
-          <label>Song Title</label><input name="title" type="title" id="title"/>
-        </div>
-        <div>
-          <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
-        </div>
-        <div>
-          <label>Genre</label><input name="genre" type="genre" id="genre"/>
-        </div>
-        <div>
-          <button type="submit">Save A Recommendation For Future</button>
-        </div>
-      </form>
+      <SubmitForm addSong={this.addSong} clearFields={this.clearFields}/>
 
       <h3>Or</h3>
 
@@ -60,5 +51,52 @@ class App extends React.Component {
     );
   }
 }
+
+
+
+
+
+const SubmitForm = ({addSong, clearFields}) => {
+
+  let val = {};
+
+  return (
+    <div>
+    <form id="form">
+        <div>
+          <label>Song Title</label><input id="input" ref={node => `${val.title = node}`} />
+        </div>
+        <div>
+          <label>Artist Name</label><input id="input" ref={node => `${val.artist = node}`} />
+        </div>
+        <div>
+          <label>Genre</label><input id="input" ref={node => `${val.genre = node}`} />
+        </div>
+        <div>
+          <button onClick={() => {console.log(val);
+            addSong(val);
+            clearFields();
+            }}>Save A Recommendation For Future</button>
+        </div>
+        </form>
+    </div>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))

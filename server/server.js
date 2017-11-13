@@ -14,13 +14,16 @@ app.use(express.static('./public'));
 //tells bodyParser what it's working with
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post('/recommend', function(req, res, next) {
+app.post('/', function(req, res, next) {
   console.log('received data, adding to db...');
+  console.log(req.body);
   helpers.addSongToDb(req.body, function(data) {
     if (data) {
-      res.status(200).send('Song saved!');
+      res.status(200);
+      res.end();
     } else {
-      res.status(418).send('Required fields missing!');
+      res.status(418);
+      res.end();
     }
   });
 
@@ -45,5 +48,7 @@ app.listen(port, function() {
 /*
 should clear form fields after button click
 page should not redirect after form submit
+should not be able to add duplicates songs - need to add table in db
+can get somg by genre
 should use some css grids to make it prettier
 */
