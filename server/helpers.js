@@ -3,14 +3,14 @@ const db = require('../db/index.js');
 var addSongToDb = function(data, callback) {
   //modify to pull data from api in future
   //make sure input not undefined
-  if (data.title && data.artist && data.genre) {
+  if (data.title && data.artist) {
   //get total num songs
     db.Song.count({}, function(err, count) {
       var track = new db.Song({
         id: `${count}`,
         title: `${data.title}`,
         artist: `${data.artist}`,
-        genre: `${data.genre}`
+        //genre: `${data.genre}`
         //youTubeUrl:`${data.youTube}`
       });
       track.save(function(err) {
@@ -38,6 +38,7 @@ var getRandomSongFromDb = function(callback) {
         if (err) {
           console.log('problem retrieving random song');
         } else {
+          console.log(data);
           callback(data);
         }
       });

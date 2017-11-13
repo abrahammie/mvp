@@ -5,6 +5,7 @@ class App extends React.Component {
       song: ''
     }
     this.getSong = this.getSong.bind(this);
+    this.clearFields = this.clearFields.bind(this);
   }
 
   getSong() {
@@ -18,6 +19,10 @@ class App extends React.Component {
     });
   }
 
+  clearFields() {
+    document.getElementById("songDetails").value = "";
+  }
+
   saveSong() {
     console.log('saveSong called');
     $.ajax({
@@ -25,19 +30,18 @@ class App extends React.Component {
       type: 'POST',
       body: 'form',
       success: (data) => {
-        console.log('song data was received sent');
+        console.log('song data was sent');
+
       }
     });
   }
 
-  clearFields() {
-    document.getElementById("songDetails").value = "";
-  }
 
   render() {
     return (
     <div>
-      <form action="/" method="post" id="songDetails">
+    <iframe name="myform" style={{display:'none'}}></iframe>
+      <form action="/" method="post" target="myform" id="songDetails">
         <div>
           <label>Song Title</label><input name="title" type="title" id="title"/>
         </div>
@@ -45,10 +49,7 @@ class App extends React.Component {
           <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
         </div>
         <div>
-          <label>Genre</label><input name="genre" type="genre" id="genre"/>
-        </div>
-        <div>
-          <button type="submit" onClick={this.clearFields}>Save A Recommendation For Future</button>
+          <button onClick={this.saveSong}>Save A Recommendation For Future</button>
         </div>
       </form>
 

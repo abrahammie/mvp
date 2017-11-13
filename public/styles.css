@@ -1,6 +1,19 @@
 body {
-  background-color: #cebb86;
+  background-color: #eaebed;
+  position: center;
+  padding: 1em;
+  border: 1px solid black;
 }
-#cat {
-  max-height: 300px;
+
+
+}
+
+#h1 {
+
+}
+
+
+#app {
+
+
 }

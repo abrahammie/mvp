@@ -20,6 +20,7 @@ var App = function (_React$Component) {
       song: ''
     };
     _this.getSong = _this.getSong.bind(_this);
+    _this.clearFields = _this.clearFields.bind(_this);
     return _this;
   }
 
@@ -38,6 +39,11 @@ var App = function (_React$Component) {
       });
     }
   }, {
+    key: 'clearFields',
+    value: function clearFields() {
+      document.getElementById("songDetails").value = "";
+    }
+  }, {
     key: 'saveSong',
     value: function saveSong() {
       console.log('saveSong called');
@@ -46,14 +52,9 @@ var App = function (_React$Component) {
         type: 'POST',
         body: 'form',
         success: function success(data) {
-          console.log('song data was received sent');
+          console.log('song data was sent');
         }
       });
-    }
-  }, {
-    key: 'clearFields',
-    value: function clearFields() {
-      document.getElementById("songDetails").value = "";
     }
   }, {
     key: 'render',
@@ -61,9 +62,10 @@ var App = function (_React$Component) {
       return React.createElement(
         'div',
         null,
+        React.createElement('iframe', { name: 'myform', style: { display: 'none' } }),
         React.createElement(
           'form',
-          { action: '/', method: 'post', id: 'songDetails' },
+          { action: '/', method: 'post', target: 'myform', id: 'songDetails' },
           React.createElement(
             'div',
             null,
@@ -88,18 +90,8 @@ var App = function (_React$Component) {
             'div',
             null,
             React.createElement(
-              'label',
-              null,
-              'Genre'
-            ),
-            React.createElement('input', { name: 'genre', type: 'genre', id: 'genre' })
-          ),
-          React.createElement(
-            'div',
-            null,
-            React.createElement(
               'button',
-              { type: 'submit', onClick: this.clearFields },
+              { onClick: this.saveSong },
               'Save A Recommendation For Future'
             )
           )
