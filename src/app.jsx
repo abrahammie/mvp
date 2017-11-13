@@ -5,7 +5,7 @@ class App extends React.Component {
       song: ''
     }
     this.getSong = this.getSong.bind(this);
-    this.clearFields = this.clearFields.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   getSong() {
@@ -19,21 +19,8 @@ class App extends React.Component {
     });
   }
 
-  clearFields() {
-    document.getElementById("songDetails").value = "";
-  }
-
-  saveSong() {
+  clearForm() {
     document.getElementById("songDetails").reset();
-    // console.log('saveSong called');
-    // $.ajax({
-    //   url: '/',
-    //   type: 'POST',
-    //   body: 'form',
-    //   success: (data) => {
-    //     console.log('song data was sent');
-    //   }
-    // });
   }
 
 
@@ -49,7 +36,7 @@ class App extends React.Component {
           <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
         </div>
         <div>
-          <button onClick={this.saveSong}>Save A Recommendation For Future</button>
+          <button type="submit" onClick={this.clearForm}/>Save A Recommendation For Future</button>
         </div>
       </form>
 
@@ -68,3 +55,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))
+

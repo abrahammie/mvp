@@ -37,7 +37,7 @@ app.listen(port, function() {
 
 /*
 To do - improvements:
-should clear form fields after button click
+should confirm song was added
 should not be able to add duplicates songs - need to add table in db
 can get somg by genre
 */

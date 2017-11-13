@@ -20,7 +20,7 @@ var App = function (_React$Component) {
       song: ''
     };
     _this.getSong = _this.getSong.bind(_this);
-    _this.clearFields = _this.clearFields.bind(_this);
+    _this.clearForm = _this.clearForm.bind(_this);
     return _this;
   }
 
@@ -39,23 +39,9 @@ var App = function (_React$Component) {
       });
     }
   }, {
-    key: 'clearFields',
-    value: function clearFields() {
-      document.getElementById("songDetails").value = "";
-    }
-  }, {
-    key: 'saveSong',
-    value: function saveSong() {
-      document.getElementById("songDetails").reset();
-      // console.log('saveSong called');
-      // $.ajax({
-      //   url: '/',
-      //   type: 'POST',
-      //   body: 'form',
-      //   success: (data) => {
-      //     console.log('song data was sent');
-      //   }
-      // });
+    key: 'clearForm',
+    value: function clearForm() {
+      setTimeout(document.getElementById("songDetails").reset(), 3000);
     }
   }, {
     key: 'render',
@@ -92,7 +78,7 @@ var App = function (_React$Component) {
             null,
             React.createElement(
               'button',
-              { onClick: this.saveSong },
+              null,
               'Save A Recommendation For Future'
             )
           )

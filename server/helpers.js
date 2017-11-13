@@ -3,6 +3,7 @@ const db = require('../db/index.js');
 var addSongToDb = function(data, res) {
   //modify to pull data from api in future
   //make sure input not undefined
+  console.log('data is ', data);
   if (data.title && data.artist) {
     console.log('song getting saved');
   //get total num songs
@@ -23,6 +24,8 @@ var addSongToDb = function(data, res) {
         }
       });
     });
+  } else {
+    console.log('missing required field');
   }
 };
 
