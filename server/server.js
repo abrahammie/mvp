@@ -11,7 +11,7 @@ let app = express();
 //initial render of index.html
 app.use(express.static('./public'));
 
-var jsonParser = bodyParser.json();
+//tells bodyParser what it's working with
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/recommend', function(req, res, next) {
@@ -41,3 +41,9 @@ let port = 3000;
 app.listen(port, function() {
   console.log('Listening on port 3000.');
 });
+
+/*
+should clear form fields after button click
+page should not redirect after form submit
+should use some css grids to make it prettier
+*/

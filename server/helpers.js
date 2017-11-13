@@ -10,8 +10,8 @@ var addSongToDb = function(data, callback) {
         id: `${count}`,
         title: `${data.title}`,
         artist: `${data.artist}`,
-        genre: `${data.genre}`,
-        youTubeUrl:`${data.youTube}`
+        genre: `${data.genre}`
+        //youTubeUrl:`${data.youTube}`
       });
       track.save(function(err) {
         if (err) {

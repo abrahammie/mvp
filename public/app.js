@@ -18,8 +18,8 @@ var App = function (_React$Component) {
 
     _this.state = {
       song: ''
-      //this.setState = this.setState.bind(this);
-    };_this.getSong = _this.getSong.bind(_this);
+    };
+    _this.getSong = _this.getSong.bind(_this);
     return _this;
   }
 
@@ -45,7 +45,6 @@ var App = function (_React$Component) {
         url: '/',
         type: 'POST',
         body: 'form',
-        //dataType: 'json',
         success: function success(data) {
           console.log('song data was received sent');
         }
@@ -59,7 +58,7 @@ var App = function (_React$Component) {
         null,
         React.createElement(
           'form',
-          { action: '/recommend', method: 'post' },
+          { action: '/recommend', method: 'post', id: 'songDetails' },
           React.createElement(
             'div',
             null,
@@ -94,16 +93,6 @@ var App = function (_React$Component) {
             'div',
             null,
             React.createElement(
-              'label',
-              null,
-              'YouTube Link (optional)'
-            ),
-            React.createElement('input', { name: 'youTube', type: 'youTube', id: 'youTube' })
-          ),
-          React.createElement(
-            'div',
-            null,
-            React.createElement(
               'button',
               { type: 'submit' },
               'Save A Recommendation For Future'
@@ -118,7 +107,7 @@ var App = function (_React$Component) {
         React.createElement(
           'button',
           { onClick: this.getSong },
-          'Click To Get Song Recommendation'
+          'Click To Get Random Song Recommendation'
         ),
         React.createElement(
           'div',
@@ -133,22 +122,6 @@ var App = function (_React$Component) {
           '  '
         )
       );
-    }
-
-    //should update db
-
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      //get request for last 5 recently meowed songs
-      // $.ajax({
-      //   url: '/',
-      //   type: 'GET',
-      //   dataType: 'json',
-      //   success: function(data) {
-      //   console.log('component mounted');
-      //   }
-      // });
     }
   }]);
 

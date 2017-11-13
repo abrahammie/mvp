@@ -4,10 +4,8 @@ class App extends React.Component {
     this.state = {
       song: ''
     }
-    //this.setState = this.setState.bind(this);
     this.getSong = this.getSong.bind(this);
   }
-
 
   getSong() {
     $.ajax({
@@ -26,7 +24,6 @@ class App extends React.Component {
       url: '/',
       type: 'POST',
       body: 'form',
-      //dataType: 'json',
       success: (data) => {
         console.log('song data was received sent');
       }
@@ -36,8 +33,7 @@ class App extends React.Component {
   render() {
     return (
     <div>
-
-      <form action="/recommend" method="post">
+      <form action="/recommend" method="post" id="songDetails">
         <div>
           <label>Song Title</label><input name="title" type="title" id="title"/>
         </div>
@@ -48,9 +44,6 @@ class App extends React.Component {
           <label>Genre</label><input name="genre" type="genre" id="genre"/>
         </div>
         <div>
-          <label>YouTube Link (optional)</label><input name="youTube" type="youTube" id="youTube"/>
-        </div>
-        <div>
           <button type="submit">Save A Recommendation For Future</button>
         </div>
       </form>
@@ -58,15 +51,14 @@ class App extends React.Component {
       <h3>Or</h3>
 
       <button onClick={this.getSong}>
-        Click To Get Song Recommendation
+        Click To Get Random Song Recommendation
       </button>
 
       <div>{this.state.song ? 'Title: ' + this.state.song.title : '' }  </div>
-      <div>{this.state.song ? 'Artist: ' + this.state.song.artist : '' }  </div>
+      <div>{this.state.song ? 'Artist: ' + this.state.song.artist : ''}  </div>
     </div>
     );
   }
-
-
+}
 
 ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))
