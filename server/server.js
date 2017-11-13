@@ -16,17 +16,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/', function(req, res, next) {
   console.log('received data, adding to db...');
-  console.log(req.body);
-  helpers.addSongToDb(req.body, function(data) {
-    if (data) {
-      res.status(200);
-      res.end();
-    } else {
-      res.status(418);
-      res.end();
-    }
-  });
-
+  helpers.addSongToDb(req.body, res);
 });
 
 
@@ -46,9 +36,8 @@ app.listen(port, function() {
 });
 
 /*
+To do - improvements:
 should clear form fields after button click
-page should not redirect after form submit
 should not be able to add duplicates songs - need to add table in db
 can get somg by genre
-should use some css grids to make it prettier
 */

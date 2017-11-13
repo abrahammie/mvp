@@ -1,9 +1,10 @@
 const db = require('../db/index.js');
 
-var addSongToDb = function(data, callback) {
+var addSongToDb = function(data, res) {
   //modify to pull data from api in future
   //make sure input not undefined
   if (data.title && data.artist) {
+    console.log('song getting saved');
   //get total num songs
     db.Song.count({}, function(err, count) {
       var track = new db.Song({
@@ -17,12 +18,11 @@ var addSongToDb = function(data, callback) {
         if (err) {
           console.log('track not saved, possible duplicate');
         } else {
-          callback(track);
+          res.status(200);
+          res.end();
         }
       });
     });
-  } else {
-    callback(null);
   }
 };
 
@@ -38,7 +38,6 @@ var getRandomSongFromDb = function(callback) {
         if (err) {
           console.log('problem retrieving random song');
         } else {
-          console.log(data);
           callback(data);
         }
       });

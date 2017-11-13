@@ -24,16 +24,16 @@ class App extends React.Component {
   }
 
   saveSong() {
-    console.log('saveSong called');
-    $.ajax({
-      url: '/',
-      type: 'POST',
-      body: 'form',
-      success: (data) => {
-        console.log('song data was sent');
-
-      }
-    });
+    document.getElementById("songDetails").reset();
+    // console.log('saveSong called');
+    // $.ajax({
+    //   url: '/',
+    //   type: 'POST',
+    //   body: 'form',
+    //   success: (data) => {
+    //     console.log('song data was sent');
+    //   }
+    // });
   }
 
 
@@ -58,9 +58,10 @@ class App extends React.Component {
       <button onClick={this.getSong}>
         Click To Get Random Song Recommendation
       </button>
-
-      <div>{this.state.song ? 'Title: ' + this.state.song.title : '' }  </div>
-      <div>{this.state.song ? 'Artist: ' + this.state.song.artist : ''}  </div>
+      <div id="recommendedSong">
+        <div>{this.state.song ? 'Title: ' + this.state.song.title : '' }  </div>
+        <div>{this.state.song ? 'Artist: ' + this.state.song.artist : ''}  </div>
+      </div>
     </div>
     );
   }

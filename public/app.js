@@ -46,15 +46,16 @@ var App = function (_React$Component) {
   }, {
     key: 'saveSong',
     value: function saveSong() {
-      console.log('saveSong called');
-      $.ajax({
-        url: '/',
-        type: 'POST',
-        body: 'form',
-        success: function success(data) {
-          console.log('song data was sent');
-        }
-      });
+      document.getElementById("songDetails").reset();
+      // console.log('saveSong called');
+      // $.ajax({
+      //   url: '/',
+      //   type: 'POST',
+      //   body: 'form',
+      //   success: (data) => {
+      //     console.log('song data was sent');
+      //   }
+      // });
     }
   }, {
     key: 'render',
@@ -108,15 +109,19 @@ var App = function (_React$Component) {
         ),
         React.createElement(
           'div',
-          null,
-          this.state.song ? 'Title: ' + this.state.song.title : '',
-          '  '
-        ),
-        React.createElement(
-          'div',
-          null,
-          this.state.song ? 'Artist: ' + this.state.song.artist : '',
-          '  '
+          { id: 'recommendedSong' },
+          React.createElement(
+            'div',
+            null,
+            this.state.song ? 'Title: ' + this.state.song.title : '',
+            '  '
+          ),
+          React.createElement(
+            'div',
+            null,
+            this.state.song ? 'Artist: ' + this.state.song.artist : '',
+            '  '
+          )
         )
       );
     }
