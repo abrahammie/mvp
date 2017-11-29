@@ -4,7 +4,8 @@
   "description": "An app for meow-singers everywhere who are looking for inspiration.",
   "main": "index.js",
   "scripts": {
-    "start": "babel --watch src --out-dir public --presets=es2015,react --ignore=node_modules,public --source-mapsinline"
+    "start": "babel --watch src --out-dir public --presets=es2015,react --ignore=node_modules,public --source-mapsinline",
+    "startdev": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,17 @@
   },
   "homepage": "https://github.com/abrahammie/mvp#readme",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
     "mongodb": "^2.2.33",
-    "mongoose": "^4.13.1"
+    "mongoose": "^4.13.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

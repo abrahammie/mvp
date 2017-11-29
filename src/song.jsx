@@ -1,4 +1,6 @@
-var SongRec = (props) => {
+import React from 'react';
+
+var Song = (props) => {
   return (
     <div>
       <h1>Title: {this.props.title}</h1>
@@ -7,7 +9,4 @@ var SongRec = (props) => {
   );
 }
 
-
-
-//how else o access within app.jsx
-window.SongRec = SongRec;
+export default Song;

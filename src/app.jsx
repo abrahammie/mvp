@@ -1,3 +1,8 @@
+import React from 'react';
+import {BrowserRouter, Router, Switch, NavLink} from 'react-router-dom';
+import Song from './song.jsx';
+import SongForm from './songForm.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -5,12 +10,12 @@ class App extends React.Component {
       song: ''
     }
     this.getSong = this.getSong.bind(this);
-    this.clearForm = this.clearForm.bind(this);
+    this.submitSong = this.submitSong.bind(this);
   }
 
   getSong() {
     $.ajax({
-      url: '/random',
+      url: '/api/random',
       type: 'GET',
       success: (data) => {
         console.log('song data was received from server');
@@ -19,29 +24,22 @@ class App extends React.Component {
     });
   }
 
-  clearForm() {
-    //display song saved and then force a rerender
-    document.getElementById("songDetails").append('Song saved!');
-    // document.getElementById("songDetails").reset();
+  submitSong(title, artist) {
+   $.ajax({
+      url: '/api/addSong',
+      type: 'POST',
+      success: (data) => {
+        console.log('song data was received from server');
+        this.setState({song: JSON.parse(data)[0]});
+      }
+    }); //display song saved and then force a rerender
+    document.getElementById("songForm").append('Song saved!');
   }
-
 
   render() {
     return (
     <div>
-    <iframe name="myform" style={{display:'none'}}></iframe>
-      <form action="/" method="post" target="myform" id="songDetails">
-        <div>
-          <label>Song Title</label><input name="title" type="title" id="title"/>
-        </div>
-        <div>
-          <label>Artist Name</label><input name="artist" type="artist" id="artist"/>
-        </div>
-        <div>
-          <button type="submit" onClick={this.clearForm}>Save A Recommendation For Future</button>
-        </div>
-      </form>
-
+      <SongForm submitSong={this.submitSong}/>
       <h3>Or</h3>
 
       <button onClick={this.getSong}>
@@ -56,5 +54,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App name="Krista"/>, document.getElementById('app'))
+export default App;
 

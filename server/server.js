@@ -12,15 +12,18 @@ let app = express();
 app.use(express.static('./public'));
 
 //tells bodyParser what it's working with
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser());
 
-app.post('/', function(req, res, next) {
+app.post('/api/addSong', function(req, res, next) {
   console.log('received data, adding to db...');
   helpers.addSongToDb(req.body, res);
 });
 
+app.get('/*', function(req, res) {
+  res.sendFile(express.static('./public'));
+});
 
-app.get('/random', function(req, res) {
+app.get('/api/random', function(req, res) {
   console.log('get request');
   helpers.getRandomSongFromDb(function(data) {
     if (data) {
@@ -29,10 +32,10 @@ app.get('/random', function(req, res) {
   })
 });
 
-let port = 3000;
+let port = 3030;
 
 app.listen(port, function() {
-  console.log('Listening on port 3000.');
+  console.log(`Listening on port ${port}.`);
 });
 
 /*
