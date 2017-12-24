@@ -9,7 +9,7 @@ require('dotenv').config();
 
 let app = express();
 
-let port = process.env.PORT || 3030;
+const port = process.env.PORT || 3030;
 //initial render of index.html
 app.use(express.static('./public'));
 
