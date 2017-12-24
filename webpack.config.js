@@ -3,7 +3,7 @@ var path = require('path');
 var config = {
    entry: './src/main.jsx', // entry point
    output: {
-         path: path.resolve('public'), // place where bundled app will be served
+         path: path.resolve('public/'), // place where bundled app will be served
          filename: 'index_bundle.js'
       },
    devServer: {
