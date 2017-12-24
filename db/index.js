@@ -1,6 +1,12 @@
 var mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect('mongodb://localhost/meow-songs');
+if (process.env.NODE_ENV === 'production') {
+  mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@mongodb://@ds021172.mlab.com:21172/meow-songs`,
+    { useMongoClient: true });
+} else {
+  mongoose.connect('mongodb://localhost/meow-songs');
+}
 
 var db = mongoose.connection;
 

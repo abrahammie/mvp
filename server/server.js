@@ -5,10 +5,11 @@ const path = require('path');
 const helpers = require('./helpers.js');
 const dummyData = require('../db/data.js');
 const db = require('../db/index.js');
+require('dotenv').config();
 
 let app = express();
 
-let port = 3030;
+app.set('port', process.env.PORT || 3030);
 //initial render of index.html
 app.use(express.static('./public'));
 
