@@ -9,7 +9,7 @@ require('dotenv').config();
 
 let app = express();
 
-const port = process.env.PORT || 3030;
+// const port = process.env.PORT || 3030;
 //initial render of index.html
 app.use(express.static('./public'));
 
@@ -44,7 +44,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}.`));
+app.listen(process.env.PORT || 3030, () => console.log(`Listening...`));
 
 /*
 To do - improvements:
