@@ -3,4 +3,5 @@
 .flooignore
 .babelrc
 .env
+npm-debug.log
 node_modules/
