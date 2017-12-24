@@ -41,7 +41,7 @@ app.get('/api/random', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  res.sendFile(path.join(__dirname, '../public'));
 });
 
 app.listen(process.env.PORT || 3030, () => console.log(`Listening...`));
