@@ -4,4 +4,9 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'Rubik', sans-serif;
+}
+h1 {
+  font-weight: bold;
+  color: #4c5b77;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Button, FormControl, ControlLabel } from 'react-bootstrap';
 
-const SongForm = ({ submitSong }) => {
+export const SongForm = ({ submitSong }) => {
   const getFormData = ev => {
     ev.preventDefault();
     const title = ev.target.elements.title.value;
@@ -10,20 +11,30 @@ const SongForm = ({ submitSong }) => {
   };
 
   return (
+    <div style={{ padding: '10%' }}>
+    <h3>Add a song to the MKC database!</h3>
+
     <form onSubmit={getFormData} id="songForm">
+      <ControlLabel>Song Title</ControlLabel>
+        <FormControl
+          id="title"
+          type="text"
+          placeholder="Enter song title"
+        />
+        <br/>
+      <ControlLabel>Artist Name</ControlLabel>
+        <FormControl
+          id="artist"
+          type="text"
+          placeholder="Enter artist name"
+        />
       <div>
-        <label>Song Title</label>
-        <input name="title" type="title" id="title" />
-      </div>
-      <div>
-        <label>Artist Name</label>
-        <input name="artist" type="artist" id="artist" />
-      </div>
-      <div>
-        <button type="submit">Save A Recommendation For Future</button>
+      <br/>
+        <Button type="submit" bsStyle="primary" bsSize="sm" active>Save</Button>
       </div>
     </form>
+    </div>
   );
 };
 
-export default SongForm;
+

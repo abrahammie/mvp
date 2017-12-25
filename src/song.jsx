@@ -1,12 +1,23 @@
 import React from 'react';
+import { Well, Button } from 'react-bootstrap';
 
-var Song = ({ title, artist }) => {
-  return (
-    <div>
-      <h1>Title: {title}</h1>
-      <p>Artist: {artist}</p>
-    </div>
-  );
-}
-
-export default Song;
+export const Song = ({ title, artist, getLyrics, lyrics }) => {
+  if (title) {
+    return (
+      <div>
+      <Well>
+        <h3>Title: {title}</h3>
+        <h3>Artist: {artist}</h3>
+        <br/>
+        <Button onClick={getLyrics} bsStyle="primary" bsSize="small" active>
+          Can't remember how it starts?
+        </Button>
+      </Well>
+      </div>
+    );
+  } else {
+    return (
+      <div></div>
+    );
+  }
+};

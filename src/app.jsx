@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, ButtonToolbar, Grid, Row, Col } from 'react-bootstrap';
-import Song from './song.jsx';
-import SongForm from './songForm.jsx';
+import { Button, ButtonToolbar, Panel, Tabs, Tab } from 'react-bootstrap';
+import GetSong from './getSong.jsx';
+import { SongForm } from './songForm.jsx';
 import Lyrics from './lyrics.jsx';
 
 const style = {
@@ -37,7 +37,6 @@ class App extends React.Component {
       song: '',
       lyrics: '',
       trackId: '',
-      copyright: '',
     };
     this.getSong = this.getSong.bind(this);
     this.submitSong = this.submitSong.bind(this);
@@ -45,6 +44,7 @@ class App extends React.Component {
   }
 
   getSong() {
+    this.setState({ lyrics: '' });
     axios.get('/api/random')
       .then(data => {
         console.log('song data received from server:', data);
@@ -71,7 +71,13 @@ class App extends React.Component {
         artist: this.state.song.artist
       }
     })
-    .then((res) => this.setState({ lyrics: res.data.lyrics_body, copyright: res.data.lyrics_copyright }))
+    .then((res) => {
+      if (res.data.lyrics_body === '') {
+        this.setState({ lyrics: 'Oops unfortunately we\'re not authorized to show these lyrics.' });
+      } else {
+        this.setState({ lyrics: res.data.lyrics_body });
+      }
+    })
     .catch((err) => console.log(err));
   }
 
@@ -79,31 +85,27 @@ class App extends React.Component {
     return (
       <div style={style.gridContainer}>
       <div></div>
+
       <div style={style.mainDisplay}>
-        <h1>Meowspiration Song Generator</h1>
-          <div style={style.tabContainer}>
-
-
-        <SongForm submitSong={this.submitSong} />
-        <h3>Or</h3>
-
-        <button onClick={this.getSong}>
-          Click To Get Random Song Recommendation
-        </button>
-        <div id="recommendedSong">
-      <Song title={this.state.song.title} artist={this.state.song.artist} />
-
-     <ButtonToolbar>
-    <Button onClick={this.getLyrics} bsStyle="primary" bsSize="large" active>Can't remember how it starts? Click here...</Button>
-    </ButtonToolbar>
-
-        <Lyrics lyrics={this.state.lyrics} copyright={this.state.copyright} />
-        </div>
-
-
-        </div>
-
+        <h1>Meow Karaoke Challenge</h1>
+        <Panel style={style.tabContainer}>
+          <Tabs defaultActiveKey={1} id="tabs">
+            <Tab eventKey={1} title="Get a song">
+              <GetSong
+              title={this.state.song.title}
+              artist={this.state.song.artist}
+              lyrics={this.state.lyrics}
+              getSong={this.getSong}
+              getLyrics={this.getLyrics}
+              />
+            </Tab>
+            <Tab eventKey={2} title="Add a song">
+              <SongForm submitSong={this.submitSong} />
+            </Tab>
+          </Tabs>
+        </Panel>
       </div>
+
       <div></div>
       </div>
     );
