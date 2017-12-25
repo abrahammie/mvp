@@ -1,10 +1,10 @@
 import React from 'react';
 
-var Song = (props) => {
+var Song = ({ title, artist }) => {
   return (
     <div>
-      <h1>Title: {this.props.title}</h1>
-      <p>Artist: {this.props.artist}</p>
+      <h1>Title: {title}</h1>
+      <p>Artist: {artist}</p>
     </div>
   );
 }

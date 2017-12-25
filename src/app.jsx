@@ -1,16 +1,47 @@
 import React from 'react';
 import axios from 'axios';
+import { Button, ButtonToolbar, Grid, Row, Col } from 'react-bootstrap';
 import Song from './song.jsx';
 import SongForm from './songForm.jsx';
+import Lyrics from './lyrics.jsx';
+
+const style = {
+  gridContainer: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 3fr 1fr',
+    minHeight: 300,
+    height: 'auto',
+    paddingTop: '10%',
+
+  },
+  mainDisplay: {
+    backgroundColor: 'white',
+    background: 'rgba(244, 244, 244, 0.5)',
+    borderRadius: 25,
+    textAlign: 'center',
+  },
+  tabContainer: {
+    backgroundColor: 'white',
+    borderRadius: 25,
+    padding: '1em',
+    margin: '0 auto',
+    width: '90%',
+    marginBottom: '5%',
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       song: '',
+      lyrics: '',
+      trackId: '',
+      copyright: '',
     };
     this.getSong = this.getSong.bind(this);
     this.submitSong = this.submitSong.bind(this);
+    this.getLyrics = this.getLyrics.bind(this);
   }
 
   getSong() {
@@ -32,9 +63,27 @@ class App extends React.Component {
       });
   }
 
+  getLyrics() {
+    // first get song id
+    axios.get('api/getLyrics', {
+      params: {
+        title: this.state.song.title,
+        artist: this.state.song.artist
+      }
+    })
+    .then((res) => this.setState({ lyrics: res.data.lyrics_body, copyright: res.data.lyrics_copyright }))
+    .catch((err) => console.log(err));
+  }
+
   render() {
     return (
-      <div>
+      <div style={style.gridContainer}>
+      <div></div>
+      <div style={style.mainDisplay}>
+        <h1>Meowspiration Song Generator</h1>
+          <div style={style.tabContainer}>
+
+
         <SongForm submitSong={this.submitSong} />
         <h3>Or</h3>
 
@@ -42,11 +91,20 @@ class App extends React.Component {
           Click To Get Random Song Recommendation
         </button>
         <div id="recommendedSong">
-          <div>{this.state.song ? 'Title: ' + this.state.song.title : ''} </div>
-          <div>
-            {this.state.song ? 'Artist: ' + this.state.song.artist : ''}{' '}
-          </div>
+      <Song title={this.state.song.title} artist={this.state.song.artist} />
+
+     <ButtonToolbar>
+    <Button onClick={this.getLyrics} bsStyle="primary" bsSize="large" active>Can't remember how it starts? Click here...</Button>
+    </ButtonToolbar>
+
+        <Lyrics lyrics={this.state.lyrics} copyright={this.state.copyright} />
         </div>
+
+
+        </div>
+
+      </div>
+      <div></div>
       </div>
     );
   }
