@@ -12,9 +12,10 @@ export const SongForm = ({ submitSong }) => {
 
   return (
     <div style={{ padding: '10%' }}>
-    <h3>Add a song to the MKC database!</h3>
+    <h3>Add a song to the challenge database!</h3>
+    <br/>
 
-    <form onSubmit={getFormData} id="songForm">
+    <form style={{ textAlign: 'left' }} onSubmit={getFormData} id="songForm">
       <ControlLabel>Song Title</ControlLabel>
         <FormControl
           id="title"

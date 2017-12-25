@@ -59,7 +59,7 @@ class App extends React.Component {
         artist: artist
       })
       .then(data => {
-        document.getElementById('songForm').append('Song saved!');
+        //document.getElementById('songForm').append('Song saved!');
       });
   }
 
@@ -75,7 +75,9 @@ class App extends React.Component {
       if (res.data.lyrics_body === '') {
         this.setState({ lyrics: 'Oops unfortunately we\'re not authorized to show these lyrics.' });
       } else {
-        this.setState({ lyrics: res.data.lyrics_body });
+        // clean up lyrics
+        const words = res.data.lyrics_body.split('*******');
+        this.setState({ lyrics: words[0] });
       }
     })
     .catch((err) => console.log(err));

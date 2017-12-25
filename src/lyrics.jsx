@@ -4,11 +4,11 @@ const Lyrics = ({ lyrics }) => {
   if (lyrics) {
     return (
       <div>
-        <p>
+        <p style={{ whiteSpace: 'pre-line' }}>
           {lyrics}
         </p>
         <br/>
-        <a target="_blank" href="https://www.musixmatch.com/">Lyrics powered by <img style={{ maxWidth: 100 }} src="/musixmatch.png" /></a>
+        <a target="_blank" href="https://www.musixmatch.com/">Lyrics preview powered by <img style={{ maxWidth: 100 }} src="/musixmatch.png" /></a>
       </div>
     );
   } else {
