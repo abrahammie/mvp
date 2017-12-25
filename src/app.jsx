@@ -89,7 +89,7 @@ class App extends React.Component {
       <div></div>
 
       <div style={style.mainDisplay}>
-        <h1>Meow Karaoke Challenge</h1>
+        <h1>Karaoke Song Selector</h1>
         <Panel style={style.tabContainer}>
           <Tabs defaultActiveKey={1} id="tabs">
             <Tab eventKey={1} title="Get a song">
