@@ -1,6 +1,7 @@
 const db = require('../db/index.js');
+const axios = require('axios');
 
-var addSongToDb = (data, callback) => {
+const addSongToDb = (data, callback) => {
   //modify to pull data from api in future
   //make sure input not undefined
   console.log('data is ', data);
@@ -27,7 +28,7 @@ var addSongToDb = (data, callback) => {
   }
 };
 
-var getRandomSongFromDb = (callback) => {
+const getRandomSongFromDb = (callback) => {
   //get random index within the size of db
   db.Song.count({}, (err, count) => {
     if (count) {
@@ -46,5 +47,20 @@ var getRandomSongFromDb = (callback) => {
   });
 }
 
+const getSongId = (songData, callback) => {
+  axios.get(`https://api.musixmatch.com/ws/1.1/matcher.track.get?format=json&q_artist=${songData.artist}&q_track=${songData.title}&apikey=${process.env.MUSIXMATCH_KEY}`)
+    .then((res) => callback(null, res))
+    .catch((err) => callback(err, null));
+};
+
+const getLyrics = (songId, callback) => {
+  axios.get(`https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${songId}&apikey=${process.env.MUSIXMATCH_KEY}`)
+    .then((res) => callback(null, res))
+    .catch((err) => callback(err, null));
+};
+
+
 module.exports.addSongToDb = addSongToDb;
 module.exports.getRandomSongFromDb = getRandomSongFromDb;
+module.exports.getSongId = getSongId;
+module.exports.getLyrics = getLyrics;

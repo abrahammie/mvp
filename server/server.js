@@ -40,6 +40,28 @@ app.get('/api/random', (req, res) => {
   })
 });
 
+app.get('/api/getLyrics', (req, res) => {
+  // console.log('req from client:',req.params)
+  console.log('req from client:',req.query)
+  helpers.getSongId(req.query, (err, songId) => {
+    if (err) {
+      console.log('Error getting songId:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('RESPONSE FROM MM:',songId.data.message.body.track.track_id)
+      helpers.getLyrics(songId.data.message.body.track.track_id, (err, lyrics) => {
+        if (err) {
+          console.log('Error getting lyrics:', err);
+          res.sendStatus(500);
+        } else {
+          res.end(JSON.stringify(lyrics.data.message.body.lyrics));
+        }
+      });
+    }
+  });
+});
+
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public'));
 });
