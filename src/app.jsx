@@ -47,7 +47,7 @@ class App extends React.Component {
     this.setState({ lyrics: '' });
     axios.get('/api/random')
       .then((data) => {
-        console.log('song data received from server:', data);
+        console.log('song data received from server:', data.data[0]);
         this.setState({ song: data.data[0] });
       })
       .then((data) => this.getLyrics())
