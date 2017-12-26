@@ -46,8 +46,6 @@ class App extends React.Component {
     this.setState({ lyrics: '' });
     axios.get('/api/random')
       .then((data) => {
-        console.log(data)
-        console.log('song data received from server:', data.data);
         this.setState({ song: data.data[0] });
       })
       .then((data) => this.getLyrics())
@@ -60,7 +58,6 @@ class App extends React.Component {
         artist: artist
       })
       .then(data => {
-        //document.getElementById('songForm').append('Song saved!');
       });
   }
 
