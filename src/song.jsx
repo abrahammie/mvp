@@ -2,7 +2,7 @@ import React from 'react';
 import { Well, Button, Panel } from 'react-bootstrap';
 import Lyrics from './lyrics.jsx';
 
-export const Song = ({ title, artist, getLyrics, lyrics }) => {
+export const Song = ({ title, artist, lyrics }) => {
   if (title) {
     return (
       <div>
@@ -11,9 +11,6 @@ export const Song = ({ title, artist, getLyrics, lyrics }) => {
         <h3>Title: {title}</h3>
         <h3>Artist: {artist}</h3>
         <br/>
-        <Button onClick={getLyrics} bsStyle="primary" bsSize="small" active>
-          Can't remember how it starts?
-        </Button>
       </Well>
       <Lyrics lyrics={lyrics} />
       </Panel>

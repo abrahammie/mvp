@@ -15,7 +15,6 @@ const GetSong = ({ title, artist, getSong, getLyrics, lyrics }) => {
         <Song
           title={title}
           artist={artist}
-          getLyrics={getLyrics}
           lyrics={lyrics}
           />
     </div>
