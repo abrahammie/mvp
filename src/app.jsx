@@ -23,7 +23,6 @@ const style = {
   tabContainer: {
     backgroundColor: 'white',
     borderRadius: 25,
-    //padding: '1em',
     margin: '0 auto',
     width: '90%',
     marginBottom: '5%',
@@ -47,7 +46,8 @@ class App extends React.Component {
     this.setState({ lyrics: '' });
     axios.get('/api/random')
       .then((data) => {
-        console.log('song data received from server:', data.data[0]);
+        console.log(data)
+        console.log('song data received from server:', data.data);
         this.setState({ song: data.data[0] });
       })
       .then((data) => this.getLyrics())
