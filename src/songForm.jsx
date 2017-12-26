@@ -11,7 +11,7 @@ export const SongForm = ({ submitSong }) => {
   };
 
   return (
-    <div style={{ padding: '10%' }}>
+    <div style={{ padding: '2% 10% 10% 10%', minHeight: 360 }}>
     <h3>Add a song to the challenge database!</h3>
     <br/>
 

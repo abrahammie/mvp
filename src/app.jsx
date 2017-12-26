@@ -23,7 +23,7 @@ const style = {
   tabContainer: {
     backgroundColor: 'white',
     borderRadius: 25,
-    padding: '1em',
+    //padding: '1em',
     margin: '0 auto',
     width: '90%',
     marginBottom: '5%',
