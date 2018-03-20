@@ -1,11 +1,18 @@
 import React from 'react';
 import { Song } from './song.jsx';
 
+const style = {
+  main: {
+    padding: "3% 10% 10% 10%",
+    minHeight: 360,
+  },
+};
+
 export const GetSong = ({ title, artist, getSong, lyrics }) => {
   return (
     <div
       id="recommendedSong"
-      style={{ padding: "3% 10% 10% 10%", minHeight: 360 }}
+      style={style.main}
     >
       <h3>Take the challenge!</h3>
       <div>
