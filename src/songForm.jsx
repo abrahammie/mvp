@@ -1,41 +1,53 @@
 import React from 'react';
-import { Button, FormControl, ControlLabel } from 'react-bootstrap';
+
+const style = {
+  main: {
+    padding: '2% 10% 10% 10%',
+    minHeight: 360,
+  },
+  songForm: {
+    textAlign: 'left',
+  }
+};
 
 export const SongForm = ({ submitSong }) => {
   const getFormData = ev => {
     ev.preventDefault();
-    const title = ev.target.elements.title.value;
-    const artist = ev.target.elements.artist.value;
+    const title = ev.target.elements.songTitle.value;
+    const artist = ev.target.elements.artistName.value;
     submitSong(title, artist);
     document.getElementById('songForm').reset();
   };
 
   return (
-    <div style={{ padding: '2% 10% 10% 10%', minHeight: 360 }}>
-    <h3>Add a song to the challenge database!</h3>
-    <br/>
+    <div style={style.main}>
+      <h3>Add a song to the challenge database!</h3>
+      <br />
 
-    <form style={{ textAlign: 'left' }} onSubmit={getFormData} id="songForm">
-      <ControlLabel>Song Title</ControlLabel>
-        <FormControl
-          id="title"
-          type="text"
-          placeholder="Enter song title"
-        />
-        <br/>
-      <ControlLabel>Artist Name</ControlLabel>
-        <FormControl
-          id="artist"
-          type="text"
-          placeholder="Enter artist name"
-        />
-      <div>
-      <br/>
-        <Button type="submit" bsStyle="primary" bsSize="sm" active>Save</Button>
-      </div>
-    </form>
+      <form style={style.songForm} onSubmit={getFormData} id="songForm">
+        <div className="form-group">
+          <label htmlFor="songTitle">Song Title</label>
+          <input
+            type="text"
+            className="form-control"
+            id="songTitle"
+            aria-describedby="songTitle"
+            placeholder="Enter song title"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="artistName">Artist Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="artistName"
+            placeholder="Enter artist name"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Save
+        </button>
+      </form>
     </div>
   );
 };
-
-
