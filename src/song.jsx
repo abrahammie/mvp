@@ -1,12 +1,11 @@
 import React from 'react';
-import { Well, Button, Panel } from 'react-bootstrap';
 import Lyrics from './lyrics.jsx';
 
 export const Song = ({ title, artist, lyrics }) => {
   if (title) {
     return (
       <div>
-      <Panel>
+      {/*<Panel>
       <Well>
         <h3>Title: {title}</h3>
         <h3>Artist: {artist}</h3>
@@ -14,6 +13,8 @@ export const Song = ({ title, artist, lyrics }) => {
       </Well>
       <Lyrics lyrics={lyrics} />
       </Panel>
+    */}
+    This is the Lyrics component
       </div>
     );
   } else {

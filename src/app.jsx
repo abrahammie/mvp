@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, ButtonToolbar, Panel, Tabs, Tab } from 'react-bootstrap';
 import GetSong from './getSong.jsx';
 import { SongForm } from './songForm.jsx';
 import Lyrics from './lyrics.jsx';
@@ -88,7 +87,51 @@ class App extends React.Component {
 
       <div style={style.mainDisplay}>
         <h1>Karaoke Song Selector</h1>
-        <Panel style={style.tabContainer}>
+        <div className="card" style={style.tabContainer}>
+        {/*<ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active" href="#">Active</a>
+              <GetSong
+                title={this.state.song.title}
+                artist={this.state.song.artist}
+                lyrics={this.state.lyrics}
+                getSong={this.getSong}
+                getLyrics={this.getLyrics}
+              />
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Link</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Link</a>
+          </li>
+        </ul>*/}
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item">
+            <a className="nav-link active" id="home-tab" data-toggle="tab" href="#getSong" role="tab" aria-controls="getSong" aria-selected="true">Get A Song</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" id="profile-tab" data-toggle="tab" href="#addSong" role="tab" aria-controls="addSong" aria-selected="false">Add A Song</a>
+          </li>
+        </ul>
+        <div className="tab-content" id="myTabContent">
+          <div className="tab-pane fade show active" id="getSong" role="tabpanel" aria-labelledby="getSong-tab">
+            <GetSong
+                title={this.state.song.title}
+                artist={this.state.song.artist}
+                lyrics={this.state.lyrics}
+                getSong={this.getSong}
+                getLyrics={this.getLyrics}
+            />
+          </div>
+          <div className="tab-pane fade" id="addSong" role="tabpanel" aria-labelledby="addSong-tab">
+            <SongForm submitSong={this.submitSong} />
+          </div>
+        </div>
+
+
+
+          {/*
           <Tabs defaultActiveKey={1} id="tabs">
             <Tab eventKey={1} title="Get a song">
               <GetSong
@@ -103,7 +146,8 @@ class App extends React.Component {
               <SongForm submitSong={this.submitSong} />
             </Tab>
           </Tabs>
-        </Panel>
+        */}
+        </div>
       </div>
 
       <div></div>
