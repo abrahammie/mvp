@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import GetSong from './getSong.jsx';
+import { GetSong } from './getSong.jsx';
 import { SongForm } from './songForm.jsx';
-import Lyrics from './lyrics.jsx';
+import { Lyrics } from './lyrics.jsx';
 
 const style = {
   gridContainer: {
@@ -11,6 +11,7 @@ const style = {
     minHeight: 300,
     height: 'auto',
     paddingTop: '10%',
+    marginBottom: 50,
   },
   mainDisplay: {
     backgroundColor: 'white',
@@ -29,7 +30,7 @@ const style = {
   },
 };
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -151,6 +152,5 @@ class App extends React.Component {
       </div>
     );
   }
-}
+};
 
-export default App;

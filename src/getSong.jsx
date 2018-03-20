@@ -1,7 +1,7 @@
 import React from 'react';
 import { Song } from './song.jsx';
 
-const GetSong = ({ title, artist, getSong, lyrics }) => {
+export const GetSong = ({ title, artist, getSong, lyrics }) => {
   return (
     <div
       id="recommendedSong"
@@ -19,4 +19,3 @@ const GetSong = ({ title, artist, getSong, lyrics }) => {
   );
 };
 
-export default GetSong;

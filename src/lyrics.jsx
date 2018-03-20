@@ -1,14 +1,15 @@
 import React from 'react';
 
-const Lyrics = ({ lyrics }) => {
+export const Lyrics = ({ lyrics }) => {
   if (lyrics) {
     return (
       <div>
-        <p style={{ whiteSpace: 'pre-line' }}>
-          {lyrics}
-        </p>
-        <br/>
-        <a target="_blank" href="https://www.musixmatch.com/">Lyrics preview powered by <img style={{ maxWidth: 100 }} src="/musixmatch.png" /></a>
+        <p style={{ whiteSpace: 'pre-line' }}>{lyrics}</p>
+        <br />
+        <a target="_blank" href="https://www.musixmatch.com/">
+          Lyrics preview powered by{' '}
+          <img style={{ maxWidth: 100 }} src="/musixmatch.png" />
+        </a>
       </div>
     );
   } else {
@@ -17,5 +18,3 @@ const Lyrics = ({ lyrics }) => {
     );
   }
 };
-
-export default Lyrics;

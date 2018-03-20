@@ -1,5 +1,5 @@
 import React from 'react';
-import Lyrics from './lyrics.jsx';
+import { Lyrics } from './lyrics.jsx';
 
 export const Song = ({ title, artist, lyrics }) => {
   if (title) {
