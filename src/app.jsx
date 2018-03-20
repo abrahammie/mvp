@@ -23,6 +23,7 @@ const style = {
     backgroundColor: 'white',
     borderRadius: 25,
     margin: '0 auto',
+    paddingTop: 15,
     width: '90%',
     marginBottom: '5%',
   }
