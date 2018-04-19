@@ -7,7 +7,7 @@ import { Lyrics } from './lyrics.jsx';
 const style = {
   gridContainer: {
     display: 'grid',
-    // gridTemplateColumns: '1fr 3fr 1fr',
+    gridTemplateColumns: '1fr 3fr 1fr',
     minHeight: 300,
     height: 'auto',
     padding: '5%',
